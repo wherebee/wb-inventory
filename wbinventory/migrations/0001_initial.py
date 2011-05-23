@@ -31,8 +31,8 @@ class Migration(SchemaMigration):
             ('description', self.gf('django.db.models.fields.TextField')(default='', blank=True)),
             ('default_uom', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wbinventory.UnitOfMeasure'])),
             ('default_location', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wbinventory.Location'])),
-            ('reorder_quantity', self.gf('django.db.models.fields.DecimalField')(default='', null=True, max_digits=16, decimal_places=6, blank=True)),
-            ('target_quantity', self.gf('django.db.models.fields.DecimalField')(default='', null=True, max_digits=16, decimal_places=6, blank=True)),
+            ('reorder_quantity', self.gf('django.db.models.fields.DecimalField')(default=None, null=True, max_digits=16, decimal_places=6, blank=True)),
+            ('target_quantity', self.gf('django.db.models.fields.DecimalField')(default=None, null=True, max_digits=16, decimal_places=6, blank=True)),
         ))
         db.send_create_signal('wbinventory', ['Item'])
 
