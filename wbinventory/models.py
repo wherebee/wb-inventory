@@ -1,6 +1,7 @@
 from django.db import models
 
 from wbinventory.settings import (
+    ASSEMBLY_MODEL,
     CATEGORY_MODEL,
     CURRENCY_MODEL,
     ITEM_MODEL,
@@ -22,6 +23,39 @@ def price_field(**kwargs):
 def quantity_field(**kwargs):
     """Create a DecimalField for a quantity with pre-set decimal places and max digits."""
     return models.DecimalField(decimal_places=QUANTITY_DECIMAL_PLACES, max_digits=QUANTITY_MAX_DIGITS, **kwargs)
+
+
+class Assembly(models.Model):
+    """An item representing an assembly that consists of multiple sub-items.
+
+    A sub-item may be capable of being an assembly itself.
+    """
+
+    item = models.ForeignKey(ITEM_MODEL)
+    subitems = models.ManyToManyField(ITEM_MODEL, related_name='+', through='AssemblyItem')
+
+    class Meta:
+        verbose_name_plural = 'Assemblies'
+
+    def __unicode__(self):
+        return unicode(self.item)
+
+
+class AssemblyItem(models.Model):
+    """A quantity of an item in an assembly."""
+
+    assembly = models.ForeignKey(ASSEMBLY_MODEL)
+    item = models.ForeignKey(ITEM_MODEL)
+    quantity = quantity_field(default='0')
+    uom = models.ForeignKey(UOM_MODEL)
+
+    def __unicode__(self):
+        return u'{0}: {1}, {2} {3}'.format(
+            self.assembly,
+            self.item,
+            self.quantity,
+            self.uom,
+        )
 
 
 class Category(models.Model):
@@ -76,14 +110,28 @@ class ItemCategory(models.Model):
     class Meta:
         verbose_name_plural = 'Item Categories'
 
+    def __unicode__(self):
+        return u'{0} ({1})'.format(
+            self.item,
+            self.category,
+        )
+
 
 class ItemLocation(models.Model):
     """Location containing a certain quantity of an item."""
 
     item = models.ForeignKey(ITEM_MODEL)
     location = models.ForeignKey(LOCATION_MODEL)
-    uom = models.ForeignKey(UOM_MODEL)
     quantity = quantity_field(default='0')
+    uom = models.ForeignKey(UOM_MODEL)
+
+    def __unicode__(self):
+        return u'{0} @ {1}: {2} {3}'.format(
+            self.item,
+            self.location,
+            self.quantity,
+            self.uom,
+        )
 
 
 class ItemPrice(models.Model):
@@ -91,8 +139,8 @@ class ItemPrice(models.Model):
 
     item = models.ForeignKey(ITEM_MODEL)
     third_party = models.ForeignKey(THIRD_PARTY_MODEL)
-    uom = models.ForeignKey(UOM_MODEL)
     quantity = quantity_field(default='0')
+    uom = models.ForeignKey(UOM_MODEL)
     currency = models.ForeignKey(CURRENCY_MODEL)
     price = price_field(default='0')
 
@@ -107,6 +155,12 @@ class ItemSupplier(models.Model):
     third_party = models.ForeignKey(THIRD_PARTY_MODEL)
     priority = models.IntegerField(default=1)  # lower value == higher priority
     notes = models.TextField(blank=True, default='')
+
+    def __unicode__(self):
+        return u'{0}, supplied by {1}'.format(
+            self.item,
+            self.third_party,
+        )
 
 
 class Location(models.Model):

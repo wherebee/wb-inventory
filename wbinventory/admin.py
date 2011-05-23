@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from wbinventory.models import (
+    Assembly,
+    AssemblyItem,
     Category,
     Currency,
     Item,
@@ -13,6 +15,11 @@ from wbinventory.models import (
     UnitOfMeasure,
     Zone,
 )
+
+
+class AssemblyItemInline(admin.TabularInline):
+
+    model = AssemblyItem
 
 
 class ItemCategoryInline(admin.TabularInline):
@@ -38,6 +45,13 @@ class ItemSupplierInline(admin.TabularInline):
 class LocationInline(admin.TabularInline):
 
     model = Location
+
+
+class AssemblyAdmin(admin.ModelAdmin):
+
+    inlines = [
+        AssemblyItemInline,
+    ]
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -77,6 +91,7 @@ class ZoneAdmin(admin.ModelAdmin):
     ]
 
 
+admin.site.register(Assembly, AssemblyAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Currency, CurrencyAdmin)
 admin.site.register(Item, ItemAdmin)

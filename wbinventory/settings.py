@@ -3,6 +3,7 @@
 from django.conf import settings
 
 
+ASSEMBLY_MODEL = getattr(settings, 'WBINVENTORY_ASSEMBLY_MODEL', 'wbinventory.Assembly')
 CATEGORY_MODEL = getattr(settings, 'WBINVENTORY_CATEGORY_MODEL', 'wbinventory.Category')
 CURRENCY_MODEL = getattr(settings, 'WBINVENTORY_CURRENCY_MODEL', 'wbinventory.Currency')
 ITEM_MODEL = getattr(settings, 'WBINVENTORY_ITEM_MODEL', 'wbinventory.Item')
