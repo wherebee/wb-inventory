@@ -57,8 +57,8 @@ class Item(models.Model):
     description = models.TextField(blank=True, default='')
     default_uom = models.ForeignKey(UOM_MODEL)
     default_location = models.ForeignKey(LOCATION_MODEL)
-    reorder_quantity = quantity_field(null=True, blank=True, default='')
-    target_quantity = quantity_field(null=True, blank=True, default='')
+    reorder_quantity = quantity_field(null=True, blank=True, default=None)
+    target_quantity = quantity_field(null=True, blank=True, default=None)
 
     categories = models.ManyToManyField(CATEGORY_MODEL, related_name='items', through='ItemCategory')
     suppliers = models.ManyToManyField(THIRD_PARTY_MODEL, related_name='items', through='ItemSupplier')
