@@ -88,6 +88,7 @@ class Item(models.Model):
     """A type of item being controlled."""
 
     number = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=250, blank=True, default='')
     description = models.TextField(blank=True, default='')
     default_uom = models.ForeignKey(UOM_MODEL, null=True, blank=True)
     default_location = models.ForeignKey(LOCATION_MODEL, null=True, blank=True)
@@ -166,19 +167,27 @@ class ItemSupplier(models.Model):
 
     item = models.ForeignKey(ITEM_MODEL)
     third_party = models.ForeignKey(THIRD_PARTY_MODEL)
+    number = models.CharField(max_length=100, blank=True, default='')
     priority = models.IntegerField(default=1)  # lower value == higher priority
     notes = models.TextField(blank=True, default='')
 
     class Meta:
         unique_together = (
-            ('item', 'third_party'),
+            ('item', 'third_party', 'number'),
         )
 
     def __unicode__(self):
-        return u'{0}, supplied by {1}'.format(
-            self.item,
-            self.third_party,
-        )
+        if self.number:
+            return u'{0}, supplied by {1} ({2})'.format(
+                self.item,
+                self.third_party,
+                self.number,
+            )
+        else:
+            return u'{0}, supplied by {1}'.format(
+                self.item,
+                self.third_party,
+            )
 
 
 class Location(models.Model):
