@@ -31,7 +31,7 @@ class Assembly(models.Model):
     A sub-item may be capable of being an assembly itself.
     """
 
-    item = models.ForeignKey(ITEM_MODEL)
+    item = models.ForeignKey(ITEM_MODEL, unique=True)
     subitems = models.ManyToManyField(ITEM_MODEL, related_name='+', through='AssemblyItem')
 
     class Meta:
@@ -61,7 +61,7 @@ class AssemblyItem(models.Model):
 class Category(models.Model):
     """A categorization of items."""
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -73,7 +73,7 @@ class Category(models.Model):
 class Currency(models.Model):
     """A type of currency used in the purchase or sale of items."""
 
-    code = models.CharField(max_length=10)
+    code = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=10)
 
@@ -87,10 +87,10 @@ class Currency(models.Model):
 class Item(models.Model):
     """A type of item being controlled."""
 
-    number = models.CharField(max_length=100)
+    number = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, default='')
-    default_uom = models.ForeignKey(UOM_MODEL)
-    default_location = models.ForeignKey(LOCATION_MODEL)
+    default_uom = models.ForeignKey(UOM_MODEL, null=True, blank=True)
+    default_location = models.ForeignKey(LOCATION_MODEL, null=True, blank=True)
     reorder_quantity = quantity_field(null=True, blank=True, default=None)
     target_quantity = quantity_field(null=True, blank=True, default=None)
 
@@ -109,6 +109,9 @@ class ItemCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Item Categories'
+        unique_together = (
+            ('item', 'category'),
+        )
 
     def __unicode__(self):
         return u'{0} ({1})'.format(
@@ -124,6 +127,11 @@ class ItemLocation(models.Model):
     location = models.ForeignKey(LOCATION_MODEL)
     quantity = quantity_field(default='0')
     uom = models.ForeignKey(UOM_MODEL)
+
+    class Meta:
+        unique_together = (
+            ('item', 'location', 'uom'),
+        )
 
     def __unicode__(self):
         return u'{0} @ {1}: {2} {3}'.format(
@@ -144,6 +152,11 @@ class ItemPrice(models.Model):
     currency = models.ForeignKey(CURRENCY_MODEL)
     price = price_field(default='0')
 
+    class Meta:
+        unique_together = (
+            ('item', 'third_party', 'quantity', 'uom', 'currency'),
+        )
+
     def __unicode__(self):
         return u'{0} {1}'.format(self.currency.symbol, self.price)
 
@@ -155,6 +168,11 @@ class ItemSupplier(models.Model):
     third_party = models.ForeignKey(THIRD_PARTY_MODEL)
     priority = models.IntegerField(default=1)  # lower value == higher priority
     notes = models.TextField(blank=True, default='')
+
+    class Meta:
+        unique_together = (
+            ('item', 'third_party'),
+        )
 
     def __unicode__(self):
         return u'{0}, supplied by {1}'.format(
@@ -177,9 +195,9 @@ class Location(models.Model):
 
 
 class ThirdParty(models.Model):
-    """The default model representing a third party."""
+    """The default model representing a third party to the organization managing inventory."""
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     contact_name = models.CharField(max_length=200, blank=True, default='')
     phone_number = models.CharField(max_length=50, blank=True, default='')
     fax_number = models.CharField(max_length=50, blank=True, default='')
@@ -200,7 +218,7 @@ class ThirdParty(models.Model):
 class UnitOfMeasure(models.Model):
     """A unit of measure, used descriptively and for conversion."""
 
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     default = models.BooleanField(default=False)
 
     class Meta:
@@ -211,9 +229,9 @@ class UnitOfMeasure(models.Model):
 
 
 class Zone(models.Model):
-    """A collection of locations."""
+    """A collection of locations within the organization managing inventory."""
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     def __unicode__(self):
         return self.name
