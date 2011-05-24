@@ -1,0 +1,657 @@
+[
+  {
+    "pk": 1,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 2
+    }
+  },
+  {
+    "pk": 3,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 22
+    }
+  },
+  {
+    "pk": 4,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 3
+    }
+  },
+  {
+    "pk": 5,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 4
+    }
+  },
+  {
+    "pk": 6,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 8
+    }
+  },
+  {
+    "pk": 7,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 12
+    }
+  },
+  {
+    "pk": 8,
+    "model": "wbinventory.assembly",
+    "fields": {
+      "item": 15
+    }
+  },
+  {
+    "pk": 1,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 2,
+      "assembly": 1,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 22,
+      "assembly": 1,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 3,
+      "assembly": 2,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 19,
+      "assembly": 2,
+      "uom": 1,
+      "quantity": "2"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 23,
+      "assembly": 3,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 24,
+      "assembly": 3,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 25,
+      "assembly": 3,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 4,
+      "assembly": 4,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 8,
+      "assembly": 4,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 12,
+      "assembly": 4,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 15,
+      "assembly": 4,
+      "uom": 1,
+      "quantity": "2"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 5,
+      "assembly": 5,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 6,
+      "assembly": 5,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 7,
+      "assembly": 5,
+      "uom": 1,
+      "quantity": "4"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 9,
+      "assembly": 6,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 10,
+      "assembly": 6,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 11,
+      "assembly": 6,
+      "uom": 3,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 13,
+      "assembly": 7,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 14,
+      "assembly": 7,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 11,
+      "assembly": 7,
+      "uom": 3,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 16,
+      "assembly": 8,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 17,
+      "assembly": 8,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "wbinventory.assemblyitem",
+    "fields": {
+      "item": 18,
+      "assembly": 8,
+      "uom": 1,
+      "quantity": "1"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "wbinventory.currency",
+    "fields": {
+      "symbol": "$",
+      "code": "USD",
+      "name": "US Dollar"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "wbinventory.currency",
+    "fields": {
+      "symbol": "\u00a3",
+      "code": "GBP",
+      "name": "British Pound"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "wbinventory.currency",
+    "fields": {
+      "symbol": "\u20ac",
+      "code": "EUR",
+      "name": "Euro"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot, assembled, ready to ship",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1AS",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot, assembled",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot head assembly",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "RH1",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot head shell",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "RH1L",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 5,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot head shell, top",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "RH1LT",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 6,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot head shell, bottom",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "RH1LB",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 7,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Screws, Phillips head",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "SCPH",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 8,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot processor assembly",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1PA",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 9,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot processor",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1P",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 10,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot processor mount",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1PM",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 11,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Adhesive",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "ADH",
+      "default_uom": 2,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 12,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot eye system assembly",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1ESA",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 13,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Binocular eye system",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "BES1",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 14,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Binocular eye system, connecting cable",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "BES1CC",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 15,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot foot support assembly",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1FSA",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 16,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Motor, small",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "MTRS",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 17,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Extension rod",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "EXROD",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 18,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Motor connecting cable",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "MTRCC",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 19,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot foot assembly",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1FA",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 20,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot foot",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1FOOT",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 21,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Fastener",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "FASTEN",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 22,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot shipping kit",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1SK",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 23,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Shipping box, 10x10x10",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "BOX101010",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 24,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot, protective insert, bottom",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1PIB",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 25,
+    "model": "wbinventory.item",
+    "fields": {
+      "description": "Robot, protective insert, top",
+      "target_quantity": null,
+      "reorder_quantity": null,
+      "number": "R1PIT",
+      "default_uom": 1,
+      "default_location": 1
+    }
+  },
+  {
+    "pk": 1,
+    "model": "wbinventory.location",
+    "fields": {
+      "third_party": null,
+      "notes": "",
+      "name": "Shelf 1",
+      "zone": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 1,
+    "model": "wbinventory.unitofmeasure",
+    "fields": {
+      "default": true,
+      "name": "ea"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "wbinventory.unitofmeasure",
+    "fields": {
+      "default": true,
+      "name": "L"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "wbinventory.unitofmeasure",
+    "fields": {
+      "default": false,
+      "name": "mL"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "wbinventory.zone",
+    "fields": {
+      "name": "Robot Manufacturing Facility"
+    }
+  }
+]
