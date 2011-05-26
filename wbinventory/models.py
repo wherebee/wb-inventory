@@ -94,6 +94,7 @@ class Item(models.Model):
     default_location = models.ForeignKey(LOCATION_MODEL, null=True, blank=True)
     reorder_quantity = quantity_field(null=True, blank=True, default=None)
     target_quantity = quantity_field(null=True, blank=True, default=None)
+    notes = models.TextField(blank=True, default='')
 
     categories = models.ManyToManyField(CATEGORY_MODEL, related_name='items', through='ItemCategory')
     suppliers = models.ManyToManyField(THIRD_PARTY_MODEL, related_name='items', through='ItemSupplier')
