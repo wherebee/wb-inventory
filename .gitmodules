@@ -1,0 +1,3 @@
+[submodule "wbinventory/static/extjs"]
+	path = wbinventory/static/extjs
+	url = https://github.com/probonogeek/extjs.git
