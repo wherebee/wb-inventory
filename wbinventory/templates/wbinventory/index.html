@@ -1,9 +1,16 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
 <html>
 <head>
     <title>WhereBee Inventory</title>
-    <link rel="stylesheet" type="text/css" href="../../static/extjs/resources/css/ext-all.css">
-    <script type="text/javascript" src="../../static/extjs/ext-debug.js"></script>
-    <script type="text/javascript" src="../../static/wbinventory/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="{{ STATIC_PREFIX }}extjs/ext-debug.js"></script>
+    <script type="text/javascript">
+        Ext.Loader.setPath({
+            WBI: '{{ STATIC_PREFIX }}wbinventory/app'
+        });
+    </script>
+    <script type="text/javascript" src="{{ STATIC_PREFIX }}wbinventory/app.js"></script>
 </head>
 <body></body>
 </html>
