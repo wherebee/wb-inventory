@@ -1,12 +1,12 @@
-[submodule "wbinventory/static/js/steal"]
-	path = wbinventory/static/js/steal
+[submodule "wbinventory/static/steal"]
+	path = wbinventory/static/steal
 	url = git@github.com:wherebee/steal.git
-[submodule "wbinventory/static/js/jquery"]
-	path = wbinventory/static/js/jquery
+[submodule "wbinventory/static/jquery"]
+	path = wbinventory/static/jquery
 	url = git@github.com:wherebee/jquerymx.git
-[submodule "wbinventory/static/js/documentjs"]
-	path = wbinventory/static/js/documentjs
+[submodule "wbinventory/static/documentjs"]
+	path = wbinventory/static/documentjs
 	url = git@github.com:wherebee/documentjs.git
-[submodule "wbinventory/static/js/funcunit"]
-	path = wbinventory/static/js/funcunit
+[submodule "wbinventory/static/funcunit"]
+	path = wbinventory/static/funcunit
 	url = git@github.com:wherebee/funcunit.git
