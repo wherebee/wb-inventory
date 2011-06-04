@@ -1,0 +1,12 @@
+[submodule "wbinventory/static/js/steal"]
+	path = wbinventory/static/js/steal
+	url = git@github.com:wherebee/steal.git
+[submodule "wbinventory/static/js/jquery"]
+	path = wbinventory/static/js/jquery
+	url = git@github.com:wherebee/jquerymx.git
+[submodule "wbinventory/static/js/documentjs"]
+	path = wbinventory/static/js/documentjs
+	url = git@github.com:wherebee/documentjs.git
+[submodule "wbinventory/static/js/funcunit"]
+	path = wbinventory/static/js/funcunit
+	url = git@github.com:wherebee/funcunit.git
