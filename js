@@ -1,1 +1,0 @@
-wbinventory/static/js
