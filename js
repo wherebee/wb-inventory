@@ -1,1 +1,1 @@
-wbinventory/static/js/js
+wbinventory/static/js
