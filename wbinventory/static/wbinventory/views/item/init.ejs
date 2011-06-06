@@ -1,0 +1,26 @@
+<h2>items</h2>
+<table cellspacing='0px'>
+	<thead>
+	<tr>
+		<% for(var attr in Wbinventory.Models.Item.attributes){%>
+			<% if(attr == 'id') continue;%>
+			<th><%= attr%> </th>	 
+		<%}%>
+		<th>Options</th>
+	</tr>
+	</thead>
+	<tbody>
+		<%= $.View('//wbinventory/views/item/list',{items: items})%>
+	</tbody>
+</table>
+<h2>New item</h2>
+<form>
+	<% for(var attr in Wbinventory.Models.Item.attributes){ %>
+		<% if(attr == 'id') continue;%>
+		<div>
+			<label><%= attr %> </label><br />
+			<input type="text" value="" name="<%= attr %>"/>
+		</div>
+	<%}%>
+	<input type='submit' value='Create'/>
+</form>

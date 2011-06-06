@@ -11,8 +11,8 @@ steal.plugins(
 
 	.resources()					// 3rd party script's (like jQueryUI), in resources folder
 
-	.models()						// loads files in models folder 
+	.models('item')					// loads files in models folder
 
-	.controllers()					// loads files in controllers folder
+	.controllers('item')			// loads files in controllers folder
 
 	.views();						// adds views to be added to build
