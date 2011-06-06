@@ -16,12 +16,12 @@ $.Model.extend('Wbinventory.Models.Item',
  	 * @param {Function} error a callback function for an error in the ajax request.
  	 */
 	findAll: function( params, success, error ){
-		$.ajax({
-			url: '/item',
+		return $.ajax({
+			url: '/wbinventory/api/v1/item/',
 			type: 'get',
 			dataType: 'json',
 			data: params,
-			success: this.callback(['wrapMany',success]),
+			success: this.callback(['models',success]),
 			error: error,
 			fixture: "//wbinventory/fixtures/items.json.get" //calculates the fixture path from the url and type.
 		});
@@ -76,7 +76,13 @@ $.Model.extend('Wbinventory.Models.Item',
 			data: attrs,
 			fixture: "-restCreate" //uses $.fixture.restCreate for response.
 		});
-	}
+	},
+    /**
+     * Extract the actual model information from results given by API.
+     */
+    models: function(data) {
+        return this._super(data.objects);
+    }
 },
 /* @Prototype */
 {});
