@@ -19,6 +19,7 @@ setup(name='wb-inventory',
       zip_safe=False,
       install_requires=[
           # -*- Extra requirements: -*-
+          'django-tastypie >= 0.9.9',
       ],
       entry_points="""
       # -*- Entry points: -*-
