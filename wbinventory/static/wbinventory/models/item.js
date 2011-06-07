@@ -76,13 +76,7 @@ $.Model.extend('Wbinventory.Models.Item',
 			data: attrs,
 			fixture: "-restCreate" //uses $.fixture.restCreate for response.
 		});
-	},
-    /**
-     * Extract the actual model information from results given by API.
-     */
-    models: function(data) {
-        return this._super(data.objects);
-    }
+	}
 },
 /* @Prototype */
 {});

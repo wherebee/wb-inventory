@@ -1,20 +1,25 @@
 from django.conf.urls.defaults import *
 
-from tastypie.api import Api
+from djangorestframework.resources import ModelResource
+from djangorestframework.views import InstanceModelView, ListOrCreateModelView
 
-from wbinventory.api import ItemResource
+from wbinventory.models import Item
 
 
-v1_api = Api(api_name='v1')
-v1_api.register(ItemResource())
+class ItemResource(ModelResource):
+
+    model = Item
 
 
 urlpatterns = patterns('wbinventory.views',
-    url(regex=  '^$',
+    url(regex=  r'^$',
         name=   'wbinventory_index',
         view=   'index',
     ),
-    url(regex=  '^api/',
-        view=   include(v1_api.urls),
+    url(regex=  r'^api/v1/item/$',
+        view=   ListOrCreateModelView.as_view(resource=ItemResource),
+    ),
+    url(regex=  r'^api/v1/item/(?P<pk>[^/]+)/$',
+        view=   InstanceModelView.as_view(resource=ItemResource),
     ),
 )
