@@ -1,0 +1,14 @@
+{% extends "site_base.html" %}
+
+{% block menu %}
+{% endblock %}
+
+{% block header %}
+<div id="sitesearch">
+    <form method="POST" action="#">
+        <label for="search_q">Search:</label>
+        <input type="text" name="q" id="search_q">
+        <input type="submit" value="Go">
+    </form>
+</div>
+{% endblock %}

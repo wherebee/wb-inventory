@@ -1,8 +1,8 @@
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
+from django.shortcuts import render_to_response
 
 
 def index(request):
     if not request.user.has_module_perms('wbinventory'):
         raise PermissionDenied()
-    return HttpResponse('')
+    return render_to_response('wbinventory/index.html', {})
