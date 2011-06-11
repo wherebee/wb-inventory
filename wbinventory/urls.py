@@ -6,4 +6,9 @@ urlpatterns = patterns('wbinventory.views',
         name=   'wbinventory_index',
         view=   'index',
     ),
+    url(
+        regex=  r'^search/$',
+        name=   'wbinventory_sitesearch',
+        view=   'sitesearch',
+    ),
 )
