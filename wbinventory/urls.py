@@ -2,13 +2,14 @@ from django.conf.urls.defaults import patterns, url
 
 
 urlpatterns = patterns('wbinventory.views',
-    url(regex=  r'^$',
-        name=   'wbinventory_index',
-        view=   'index',
+    url(
+        r'^$',
+        'index',
+        name='wbinventory_index',
     ),
     url(
-        regex=  r'^search/$',
-        name=   'wbinventory_sitesearch',
-        view=   'sitesearch',
+        r'^search/$',
+        'sitesearch',
+        name='wbinventory_sitesearch',
     ),
 )
