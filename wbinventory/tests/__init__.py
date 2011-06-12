@@ -1,2 +1,2 @@
 # Import tests from submodules.
-from .sitesearch import *
+from .test_sitesearch import *
