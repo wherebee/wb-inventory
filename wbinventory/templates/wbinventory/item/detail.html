@@ -1,9 +1,9 @@
 {% extends "wbinventory/base.html" %}
 
 {% block title %}
-    Site Search
+    {{ item.number }} - {{ item.name }} - Item Detail
 {% endblock %}
 
 {% block content %}
-    {% include "wbinventory/item/table.html" %}
+    Detail for {{ item.number }} - {{ item.name }}
 {% endblock %}

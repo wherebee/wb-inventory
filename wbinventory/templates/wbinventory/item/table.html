@@ -1,0 +1,17 @@
+{% if item_list %}
+    <table>
+        <thead>
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in item_list %}
+            {% include "wbinventory/item/table_row.html" %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No matching items.</p>
+{% endif %}

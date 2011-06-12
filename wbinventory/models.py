@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from wbinventory.settings import (
@@ -101,6 +102,9 @@ class Item(models.Model):
 
     def __unicode__(self):
         return self.number
+
+    def get_absolute_url(self):
+        return reverse('wbinventory_item_detail', kwargs=dict(pk=self.pk))
 
 
 class ItemCategory(models.Model):
