@@ -11,4 +11,21 @@
         <input type="submit" value="Go">
     </form>
 </div>
+<script type="text/javascript">
+// Intercept '/' key to activate and select search input.
+jQuery(function ($) {
+    var $q = $('#search_q');
+    $(document).keypress(function (event) {
+        var slashKey = 47;
+        var anyInputsFocused = $('input[type=text]:focus').length > 0;
+        if (event.which == slashKey && !anyInputsFocused) {
+            $q.focus();
+            $q.select();
+            return false;
+        } else {
+            return true;
+        }
+    });
+});
+</script>
 {% endblock %}
