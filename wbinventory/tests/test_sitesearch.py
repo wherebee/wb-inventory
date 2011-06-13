@@ -19,11 +19,11 @@ class SiteSearchTest(BaseTest):
         response = c.get('/wbinventory/')
         self.assertIn('Search:', response.content)
 
-#    def test_search_shows_query(self):
-#        c = self.logged_in_client()
-#        response = c.get('/wbinventory/search/?q=something')
-#        # Check for the value we searched for being part of the input field.
-#        self.assertIn('value="something"', response.content)
+    def test_search_shows_query(self):
+        c = self.logged_in_client()
+        response = c.get('/wbinventory/search/?q=something')
+        # Check for the value we searched for being part of the input field.
+        self.assertIn('value="something"', response.content)
 
     def test_search_page_with_results(self):
         c = self.logged_in_client()
