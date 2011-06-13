@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import patterns, url
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
+from wbinventory.forms import ItemForm
 from wbinventory.models import Item
 from wbinventory.views import SiteSearchListView
 
@@ -18,6 +20,16 @@ urlpatterns = patterns('wbinventory.views',
             model=Item,
         ),
         name='wbinventory_item_detail',
+    ),
+    url(
+        r'^items/(?P<pk>\d+)/edit/$',
+        UpdateView.as_view(
+            context_object_name='item',
+            template_name='wbinventory/item/update.html',
+            model=Item,
+            form_class=ItemForm,
+        ),
+        name='wbinventory_item_update',
     ),
     url(
         r'^search/$',

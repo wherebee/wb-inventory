@@ -1,0 +1,23 @@
+{% extends "wbinventory/base.html" %}
+{% load url from future %}
+{% load uni_form_tags %}
+
+{% block title %}
+    {{ item.number }} - {{ item.name }} - Item Update
+{% endblock %}
+
+{% block content %}
+    <form method="post" class="uniForm">
+        {% if form.helper %}
+            {% with form.helper as helper %}
+                {% uni_form form helper %}
+            {% endwith %}
+        {% else %}
+            {% if helper %}
+                {% uni_form form helper %}
+            {% else %}
+                {% uni_form form %}
+            {% endif %}
+        {% endif %}
+    </form>
+{% endblock %}
