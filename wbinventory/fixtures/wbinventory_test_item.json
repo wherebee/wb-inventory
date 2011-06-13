@@ -1,0 +1,18 @@
+[
+  {
+    "pk": 1,
+    "model": "wbinventory.item",
+    "fields": {
+      "number": "12345",
+      "name": "one two three four five"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "wbinventory.item",
+    "fields": {
+      "number": "67890",
+      "name": "six seven eight nine zero"
+    }
+  }
+]
