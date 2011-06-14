@@ -8,7 +8,7 @@
     <form method="get" action="{% url wbinventory_sitesearch %}">
         <label for="search_q">Search:</label>
         {% with request.GET.q as q %}
-            <input type="text" name="q" id="search_q" {% if q %}value="{{ q|urlencode }}"{% endif %}>
+            <input type="text" name="q" id="search_q" {% if q %}value="{{ q }}"{% endif %}>
         {% endwith %}
         <input type="submit" value="Go">
     </form>
