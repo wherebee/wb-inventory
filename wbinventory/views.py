@@ -1,3 +1,4 @@
+import re
 from django.core.exceptions import PermissionDenied
 from django.db.models.query_utils import Q
 from django.shortcuts import render
@@ -27,6 +28,7 @@ class SiteSearchListView(ListView):
 
     def get_queryset(self):
         q = self.request.GET['q']
+        q = re.sub(r'\s{2,}', ' ', q.strip()) # Normalize whitespace.
         if q:
             return Item.objects.filter(
                 Q(number__icontains=q) | Q(name__icontains=q),
