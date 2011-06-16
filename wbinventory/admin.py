@@ -33,6 +33,11 @@ class LocationInline(admin.TabularInline):
     model = models.Location
 
 
+class ItemUnitOfMeasureConversionInline(admin.TabularInline):
+
+    model = models.ItemUnitOfMeasureConversion
+
+
 class AssemblyAdmin(admin.ModelAdmin):
 
     inlines = [
@@ -55,6 +60,7 @@ class ItemAdmin(admin.ModelAdmin):
         ItemLocationInline,
         ItemSupplierInline,
         ItemPriceInline,
+        ItemUnitOfMeasureConversionInline,
     ]
 
 
