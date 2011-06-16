@@ -1,5 +1,9 @@
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models.expressions import F
+from django.db.models.signals import post_save
+from django.db.utils import IntegrityError
+from django.dispatch.dispatcher import receiver
 
 from wbinventory.settings import (
     ASSEMBLY_MODEL,
@@ -193,6 +197,146 @@ class ItemSupplier(models.Model):
                 self.item,
                 self.third_party,
             )
+
+
+class ItemTransaction(models.Model):
+    """A movement of an item between locations or units of measure."""
+
+    item = models.ForeignKey(ITEM_MODEL)
+    from_location = models.ForeignKey(LOCATION_MODEL, blank=True, null=True, related_name='+')
+    from_quantity = quantity_field(blank=True, null=True)
+    from_uom = models.ForeignKey(UOM_MODEL, blank=True, null=True, related_name='+')
+    to_location = models.ForeignKey(LOCATION_MODEL, blank=True, null=True, related_name='+')
+    to_quantity = quantity_field(blank=True, null=True)
+    to_uom = models.ForeignKey(UOM_MODEL, blank=True, null=True, related_name='+')
+    created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, force_insert=False, force_update=False, using=None):
+        if self.is_add():
+            if (
+                self.from_quantity is not None
+                or self.from_uom is not None
+                or self.to_quantity is None
+                or self.to_uom is None
+            ):
+                raise IntegrityError('Add item transaction requires all "to" information and no "from" information.')
+        elif self.is_remove():
+            if (
+                self.from_quantity is None
+                or self.from_uom is None
+                or self.to_quantity is not None
+                or self.to_uom is not None
+            ):
+                raise IntegrityError('Remove item transaction requires all "from" information and no "to" information.')
+        elif self.is_move():
+            if (
+                self.from_quantity is None
+                or self.from_uom is None
+                or self.to_quantity is None
+                or self.to_uom is None
+            ):
+                raise IntegrityError('Move item transaction requires all "from" information and all "to" information.')
+        elif self.is_convert():
+            if (
+                self.from_quantity is None
+                or self.from_uom is None
+                or self.to_quantity is None
+                or self.to_uom is None
+            ):
+                raise IntegrityError('Convert item transaction requires all "from" information and all "to" information.')
+        else:
+            raise IntegrityError('Unknown item transaction.')
+        # One of the four transaction types was detected, and the transaction
+        # was deemed valid; continue saving.
+        super(ItemTransaction, self).save(force_insert, force_update, using)
+
+    def is_add(self):
+        return self.from_location is None and self.to_location is not None
+
+    def is_remove(self):
+        return self.from_location is not None and self.to_location is None
+
+    def is_move(self):
+        return self.from_location != self.to_location
+
+    def is_convert(self):
+        return self.from_location == self.to_location
+
+    def __unicode__(self):
+        if self.is_add():
+            return u'+ {0} {1} {2} @ {3}'.format(
+                self.to_quantity,
+                self.to_uom,
+                self.item,
+                self.to_location,
+            )
+        elif self.is_remove():
+            return u'- {0} {1} {2} @ {3}'.format(
+                self.from_quantity,
+                self.from_uom,
+                self.item,
+                self.from_location,
+            )
+        elif self.is_move():
+            return u'> {0} {1} {2} @ {3} to {4}'.format(
+                self.from_quantity,
+                self.from_uom,
+                self.item,
+                self.from_location,
+                self.to_location,
+            )
+        elif self.is_convert():
+            return u'C {0} {1} to {2} {3} {4} @ {5}'.format(
+                self.from_quantity,
+                self.from_uom,
+                self.to_quantity,
+                self.to_uom,
+                self.item,
+                self.from_location,
+            )
+        else:
+            return u'(Invalid transaction)'
+
+
+@receiver(post_save, sender=ItemTransaction)
+def on_ItemTransaction_save(sender, instance, created, **kwargs):
+    """
+    Update ItemLocation(s) based on a newly-created ItemTransaction.
+    """
+    if not created:
+        raise IntegrityError('Cannot update ItemTransaction instances.')
+    if instance.from_location:
+        try:
+            ItemLocation.objects.filter(
+                item=instance.item,
+                location=instance.from_location,
+                uom=instance.from_uom,
+            ).update(
+                quantity=F('quantity') - instance.from_quantity,
+            )
+        except ItemLocation.DoesNotExist:
+            ItemLocation(
+                item=instance.item,
+                location=instance.from_location,
+                quantity=instance.from_quantity,
+                uom=instance.from_uom,
+            ).save()
+    if instance.to_location:
+        try:
+            ItemLocation.objects.filter(
+                item=instance.item,
+                location=instance.to_location,
+                uom=instance.to_uom,
+            ).update(
+                quantity=F('quantity') + instance.to_quantity,
+            )
+        except ItemLocation.DoesNotExist:
+            ItemLocation(
+                item=instance.item,
+                location=instance.to_location,
+                quantity=instance.to_quantity,
+                uom=instance.to_uom,
+            ).save()
 
 
 class ItemUnitOfMeasureConversion(models.Model):
