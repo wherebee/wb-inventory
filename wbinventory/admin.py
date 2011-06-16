@@ -1,50 +1,36 @@
 from django.contrib import admin
 
-from wbinventory.models import (
-    Assembly,
-    AssemblyItem,
-    Category,
-    Currency,
-    Item,
-    ItemCategory,
-    ItemLocation,
-    ItemPrice,
-    ItemSupplier,
-    Location,
-    ThirdParty,
-    UnitOfMeasure,
-    Zone,
-)
+from wbinventory import models
 
 
 class AssemblyItemInline(admin.TabularInline):
 
-    model = AssemblyItem
+    model = models.AssemblyItem
 
 
 class ItemCategoryInline(admin.TabularInline):
 
-    model = ItemCategory
+    model = models.ItemCategory
 
 
 class ItemLocationInline(admin.TabularInline):
 
-    model = ItemLocation
+    model = models.ItemLocation
 
 
 class ItemPriceInline(admin.TabularInline):
 
-    model = ItemPrice
+    model = models.ItemPrice
 
 
 class ItemSupplierInline(admin.TabularInline):
 
-    model = ItemSupplier
+    model = models.ItemSupplier
 
 
 class LocationInline(admin.TabularInline):
 
-    model = Location
+    model = models.Location
 
 
 class AssemblyAdmin(admin.ModelAdmin):
@@ -91,11 +77,11 @@ class ZoneAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(Assembly, AssemblyAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Currency, CurrencyAdmin)
-admin.site.register(Item, ItemAdmin)
-admin.site.register(Location, LocationAdmin)
-admin.site.register(ThirdParty, ThirdPartyAdmin)
-admin.site.register(UnitOfMeasure, UnitOfMeasureAdmin)
-admin.site.register(Zone, ZoneAdmin)
+admin.site.register(models.Assembly, AssemblyAdmin)
+admin.site.register(models.Category, CategoryAdmin)
+admin.site.register(models.Currency, CurrencyAdmin)
+admin.site.register(models.Item, ItemAdmin)
+admin.site.register(models.Location, LocationAdmin)
+admin.site.register(models.ThirdParty, ThirdPartyAdmin)
+admin.site.register(models.UnitOfMeasure, UnitOfMeasureAdmin)
+admin.site.register(models.Zone, ZoneAdmin)
