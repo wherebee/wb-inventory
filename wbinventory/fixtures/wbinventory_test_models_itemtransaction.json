@@ -1,0 +1,54 @@
+[
+    {
+        "pk": 1,
+        "model": "wbinventory.item",
+        "fields": {
+            "description": "",
+            "target_quantity": null,
+            "notes": "",
+            "reorder_quantity": null,
+            "number": "ITEM1",
+            "name": "Item One",
+            "default_uom": null,
+            "default_location": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "wbinventory.location",
+        "fields": {
+            "third_party": null,
+            "notes": "",
+            "name": "Location 1",
+            "zone": null,
+            "description": ""
+        }
+    },
+    {
+        "pk": 2,
+        "model": "wbinventory.location",
+        "fields": {
+            "third_party": null,
+            "notes": "",
+            "name": "Location 2",
+            "zone": null,
+            "description": ""
+        }
+    },
+    {
+        "pk": 1,
+        "model": "wbinventory.unitofmeasure",
+        "fields": {
+            "default": true,
+            "name": "ea"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "wbinventory.unitofmeasure",
+        "fields": {
+            "default": false,
+            "name": "dozen"
+        }
+    }
+]
