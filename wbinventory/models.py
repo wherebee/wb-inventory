@@ -220,6 +220,8 @@ class ItemTransaction(models.Model):
                 or self.to_uom is None
             ):
                 raise IntegrityError('Add item transaction requires all "to" information and no "from" information.')
+            else:
+                pass
         elif self.is_remove():
             if (
                 self.from_quantity is None
@@ -228,14 +230,20 @@ class ItemTransaction(models.Model):
                 or self.to_uom is not None
             ):
                 raise IntegrityError('Remove item transaction requires all "from" information and no "to" information.')
+            else:
+                pass
         elif self.is_move():
             if (
                 self.from_quantity is None
                 or self.from_uom is None
                 or self.to_quantity is None
                 or self.to_uom is None
+                or self.from_uom != self.to_uom
+                or self.from_quantity != self.to_quantity
             ):
-                raise IntegrityError('Move item transaction requires all "from" information and all "to" information.')
+                raise IntegrityError('Move item transaction requires all "from" information, all "to" information, and matching quantity and unit of measure.')
+            else:
+                pass
         elif self.is_convert():
             if (
                 self.from_quantity is None
@@ -244,6 +252,8 @@ class ItemTransaction(models.Model):
                 or self.to_uom is None
             ):
                 raise IntegrityError('Convert item transaction requires all "from" information and all "to" information.')
+            else:
+                pass
         else:
             raise IntegrityError('Unknown item transaction.')
         # One of the four transaction types was detected, and the transaction
@@ -306,37 +316,47 @@ def on_ItemTransaction_save(sender, instance, created, **kwargs):
     if not created:
         raise IntegrityError('Cannot update ItemTransaction instances.')
     if instance.from_location:
-        try:
-            ItemLocation.objects.filter(
-                item=instance.item,
-                location=instance.from_location,
-                uom=instance.from_uom,
-            ).update(
-                quantity=F('quantity') - instance.from_quantity,
-            )
-        except ItemLocation.DoesNotExist:
+        updated = ItemLocation.objects.filter(
+            item=instance.item,
+            location=instance.from_location,
+            uom=instance.from_uom,
+        ).update(
+            quantity=F('quantity') - instance.from_quantity,
+        )
+        if not updated:
             ItemLocation(
                 item=instance.item,
                 location=instance.from_location,
                 quantity=instance.from_quantity,
                 uom=instance.from_uom,
             ).save()
+        else:
+            # Already updated.
+            pass
+    else:
+        # ItemTransaction has no From location.
+        pass
     if instance.to_location:
-        try:
-            ItemLocation.objects.filter(
-                item=instance.item,
-                location=instance.to_location,
-                uom=instance.to_uom,
-            ).update(
-                quantity=F('quantity') + instance.to_quantity,
-            )
-        except ItemLocation.DoesNotExist:
+        updated = ItemLocation.objects.filter(
+            item=instance.item,
+            location=instance.to_location,
+            uom=instance.to_uom,
+        ).update(
+            quantity=F('quantity') + instance.to_quantity,
+        )
+        if not updated:
             ItemLocation(
                 item=instance.item,
                 location=instance.to_location,
                 quantity=instance.to_quantity,
                 uom=instance.to_uom,
             ).save()
+        else:
+            # Already updated.
+            pass
+    else:
+        # ItemTransaction has no To location.
+        pass
 
 
 class ItemUnitOfMeasureConversion(models.Model):

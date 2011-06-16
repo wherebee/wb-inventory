@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User
 from django.test.client import Client
-from django.test.testcases import TestCase
+from django.test.testcases import TransactionTestCase
 
 
-class BaseTest(TestCase):
+class BaseTest(TransactionTestCase):
 
     def logged_in_client(self):
         c = Client()
