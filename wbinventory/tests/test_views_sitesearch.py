@@ -10,8 +10,8 @@ from wbinventory.tests.base import BaseTest
 class SiteSearchTest(BaseTest):
 
     fixtures = [
-        'wbinventory_test_user.json',
-        'wbinventory_test_sitesearch.json',
+        'wbinventory_test_views_user.json',
+        'wbinventory_test_views_sitesearch.json',
     ]
 
     def test_index_page_has_site_search(self):

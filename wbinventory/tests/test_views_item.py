@@ -1,11 +1,11 @@
 from wbinventory.tests.base import BaseTest
 
 
-class ItemTest(BaseTest):
+class ViewsItemTest(BaseTest):
 
     fixtures = [
-        'wbinventory_test_user.json',
-        'wbinventory_test_item.json',
+        'wbinventory_test_views_user.json',
+        'wbinventory_test_views_item.json',
     ]
 
     def test_detail_shows_fields(self):
