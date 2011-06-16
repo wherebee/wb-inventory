@@ -195,6 +195,30 @@ class ItemSupplier(models.Model):
             )
 
 
+class ItemUnitOfMeasureConversion(models.Model):
+    """Describes a possible conversion of one unit of measure to another."""
+
+    item = models.ForeignKey(ITEM_MODEL)
+    from_quantity = quantity_field(default='1')
+    from_uom = models.ForeignKey(UOM_MODEL, related_name='+')
+    to_quantity = quantity_field()
+    to_uom = models.ForeignKey(UOM_MODEL, related_name='+')
+
+    class Meta:
+        unique_together = (
+            ('from_quantity', 'from_uom'),
+        )
+
+    def __unicode__(self):
+        return u'{0}: {1} {2} -> {3} {4}'.format(
+            self.item,
+            self.from_quantity,
+            self.from_uom,
+            self.to_quantity,
+            self.to_uom,
+        )
+
+
 class Location(models.Model):
     """An area where items are kept."""
 
