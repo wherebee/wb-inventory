@@ -1,4 +1,5 @@
 {% extends "wbinventory/base.html" %}
+{% load url from future %}
 
 {% block title %}
     Site Search
@@ -6,4 +7,12 @@
 
 {% block content %}
     {% include "wbinventory/item/table.html" %}
+
+    {% with create_item_form as form %}
+        {% if form %}
+            <p>Create a new item:</p>
+            {% url 'wbinventory_item_create' as action %}
+            {% include "wbinventory/form.html" %}
+        {% endif %}
+    {% endwith %}
 {% endblock %}

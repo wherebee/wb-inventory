@@ -40,4 +40,21 @@ class SiteSearchTest(BaseTest):
         c = self.logged_in_client()
         response = c.get('/wbinventory/search/?q=doesnotexist')
         self.assertIn('No matching items.', response.content)
-        
+
+    def test_search_exact_match_found(self):
+        """
+        When an exact item number match is found, no form for creating
+        a new item is shown.
+        """
+        c = self.logged_in_client()
+        response = c.get('/wbinventory/search/?q=12345')
+        self.assertNotIn('Create a new item', response.content)
+
+    def test_search_exact_match_not_found(self):
+        """
+        When no exact item number match is found, a form for creating
+        a new item is shown.
+        """
+        c = self.logged_in_client()
+        response = c.get('/wbinventory/search/?q=24680')
+        self.assertIn('Create a new item', response.content)
