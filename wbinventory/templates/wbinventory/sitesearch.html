@@ -6,11 +6,16 @@
 {% endblock %}
 
 {% block content %}
+    <h2>Search results</h2>
+
     {% include "wbinventory/item/table.html" %}
 
     {% with create_item_form as form %}
         {% if form %}
-            <p>Create a new item:</p>
+            <h2>Create a new item</h2>
+
+            <p>No exact item number was found for your search. You can create a new item below.</p>
+
             {% url 'wbinventory_item_create' as action %}
             {% include "wbinventory/form.html" %}
         {% endif %}
