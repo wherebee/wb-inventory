@@ -19,6 +19,10 @@ class ItemForm(ModelForm):
             'number',
             'name',
             'description',
+            'default_uom',
+            'default_location',
+            'reorder_quantity',
+            'target_quantity',
         )
 
     helper = save_helper

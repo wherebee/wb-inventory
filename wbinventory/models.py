@@ -95,7 +95,7 @@ class Item(models.Model):
     number = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=250, blank=True, default='')
     description = models.TextField(blank=True, default='')
-    default_uom = models.ForeignKey(UOM_MODEL, null=True, blank=True)
+    default_uom = models.ForeignKey(UOM_MODEL, null=True, blank=True, verbose_name='Default unit of measure')
     default_location = models.ForeignKey(LOCATION_MODEL, null=True, blank=True)
     reorder_quantity = quantity_field(null=True, blank=True, default=None)
     target_quantity = quantity_field(null=True, blank=True, default=None)

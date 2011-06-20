@@ -7,27 +7,40 @@
 
 {% block content %}
     <div id="item-detail">
-        <div id="item-number" class="editable-text">
-            <h1>{{ item.number }}</h1>
+        <div id="item-number" class="detail">
+            <label>Number</label>
+            <h1 class="value">{{ item.number }}</h1>
             <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
         </div>
 
-        <div id="item-name" class="editable-text">
-            {% if item.name %}
-                <span>{{ item.name }}</span>
-                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
-            {% else %}
-                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[add name]</a></em>
-            {% endif %}
+        <div id="item-name" class="detail">
+            <label>Name</label>
+            <span class="value {% if item.name == None %}null{% endif %}">{{ item.name }}</span>
         </div>
 
-        <div id="item-description" class="editable-text">
-            {% if item.description %}
-                <span>{{ item.description }}</span>
-                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
-            {% else %}
-                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[add description]</a></em>
-            {% endif %}
+        <div id="item-description" class="detail">
+            <label>Description</label>
+            <span class="value {% if item.description == None %}null{% endif %}">{{ item.description }}</span>
+        </div>
+
+        <div id="item-default-uom" class="detail">
+            <label>Default unit of measure</label>
+            <span class="value {% if item.default_uom == None %}null{% endif %}">{{ item.default_uom }}</span>
+        </div>
+
+        <div id="item-default-location" class="detail">
+            <label>Default location</label>
+            <span class="value {% if item.default_location == None %}null{% endif %}">{{ item.default_location }}</span>
+        </div>
+
+        <div id="item-reorder-quantity" class="detail">
+            <label>Reorder quantity</label>
+            <span class="value {% if item.reorder_quantity == None %}null{% endif %}">{{ item.reorder_quantity }}</span>
+        </div>
+
+        <div id="item-target-quantity" class="detail">
+            <label>Target quantity</label>
+            <span class="value {% if item.target_quantity == None %}null{% endif %}">{{ item.target_quantity }}</span>
         </div>
     </div>
 

@@ -53,10 +53,26 @@ div#content thead th, div#content tbody td {
 
 #item-number h1 {
     display: inline;
+    margin-top: 0;
 }
 
 #item-name span {
     font-size: x-large;
+}
+
+.detail {
+    margin-top: .5em;
+}
+
+.detail label {
+    width: 12em;
+    float: left;
+    color: gray;
+    font-style: italic;
+}
+
+.detail .null.value {
+    color: #d3d3d3;
 }
 
 body > footer {
