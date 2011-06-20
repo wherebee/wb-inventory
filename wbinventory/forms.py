@@ -1,6 +1,7 @@
+import django.forms
 from django.forms.models import ModelForm
 from uni_form.helpers import FormHelper, Submit, HTML, Row
-from wbinventory.models import Item
+from wbinventory.models import Item, ItemTransaction
 
 
 save_helper = FormHelper()
@@ -24,5 +25,76 @@ class ItemForm(ModelForm):
             'reorder_quantity',
             'target_quantity',
         )
+
+    helper = save_helper
+
+
+class ItemAddForm(ModelForm):
+
+    class Meta:
+        model = ItemTransaction
+        fields = (
+            'item',
+            'to_location',
+            'to_quantity',
+            'to_uom',
+        )
+        widgets = {
+            'item': django.forms.HiddenInput(),
+        }
+
+    helper = save_helper
+
+
+class ItemRemoveForm(ModelForm):
+
+    class Meta:
+        model = ItemTransaction
+        fields = (
+            'item',
+            'from_location',
+            'from_quantity',
+            'from_uom',
+        )
+        widgets = {
+            'item': django.forms.HiddenInput(),
+        }
+
+    helper = save_helper
+
+
+class ItemMoveForm(ModelForm):
+
+    class Meta:
+        model = ItemTransaction
+        fields = (
+            'item',
+            'from_location',
+            'from_quantity',
+            'from_uom',
+            'to_location',
+        )
+        widgets = {
+            'item': django.forms.HiddenInput(),
+        }
+
+    helper = save_helper
+
+
+class ItemConvertForm(ModelForm):
+
+    class Meta:
+        model = ItemTransaction
+        fields = (
+            'item',
+            'from_location',
+            'from_quantity',
+            'from_uom',
+            'to_quantity',
+            'to_uom',
+        )
+        widgets = {
+            'item': django.forms.HiddenInput(),
+        }
 
     helper = save_helper

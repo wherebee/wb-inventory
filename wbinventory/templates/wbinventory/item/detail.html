@@ -71,5 +71,19 @@
         {% with item.itemlocation_set.all as itemlocation_list %}
             {% include "wbinventory/itemlocation/table.html" %}
         {% endwith %}
+
+        {% url "wbinventory_itemtransaction_create" as action %}
+
+        <h3>Add items</h3>
+        {% with item_add_form as form %}{% include "wbinventory/form.html" %}{% endwith %}
+
+        <h3>Remove items</h3>
+        {% with item_remove_form as form %}{% include "wbinventory/form.html" %}{% endwith %}
+
+        <h3>Move items</h3>
+        {% with item_move_form as form %}{% include "wbinventory/form.html" %}{% endwith %}
+
+        <h3>Convert items</h3>
+        {% with item_convert_form as form %}{% include "wbinventory/form.html" %}{% endwith %}
     </div>
 {% endblock %}

@@ -1,9 +1,11 @@
+from django.views.generic.edit import CreateView
 import re
 from django.core.exceptions import PermissionDenied
 from django.db.models.query_utils import Q
 from django.shortcuts import render
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from wbinventory.forms import ItemForm
+from wbinventory.forms import ItemForm, ItemAddForm, ItemRemoveForm, ItemMoveForm, ItemConvertForm
 from wbinventory.models import Item
 
 
@@ -20,6 +22,23 @@ def require_any_perm(fn):
 @require_any_perm
 def index(request):
     return render(request, 'wbinventory/index.html', {})
+
+
+class ItemDetailView(DetailView):
+
+    def get_context_data(self, **kwargs):
+        data = super(ItemDetailView, self).get_context_data(**kwargs)
+        data['item_add_form'] = ItemAddForm(dict(item=self.object))
+        data['item_remove_form'] = ItemRemoveForm(dict(item=self.object))
+        data['item_move_form'] = ItemMoveForm(dict(item=self.object))
+        data['item_convert_form'] = ItemConvertForm(dict(item=self.object))
+        return data
+
+
+class ItemTransactionCreateView(CreateView):
+
+    def get_success_url(self):
+        return self.object.item.get_absolute_url()
 
 
 class SiteSearchListView(ListView):

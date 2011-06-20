@@ -236,14 +236,15 @@ class ItemTransaction(models.Model):
             if (
                 self.from_quantity is None
                 or self.from_uom is None
-                or self.to_quantity is None
-                or self.to_uom is None
-                or self.from_uom != self.to_uom
-                or self.from_quantity != self.to_quantity
+                or (self.to_uom is not None and self.from_uom != self.to_uom)
+                or (self.to_quantity is not None and self.from_quantity != self.to_quantity)
             ):
                 raise IntegrityError('Move item transaction requires all "from" information, all "to" information, and matching quantity and unit of measure.')
             else:
-                pass
+                # to_uom and to_quantity are either None or matching.
+                # We want them to match for certain.
+                self.to_uom = self.from_uom
+                self.to_quantity = self.from_quantity
         elif self.is_convert():
             if (
                 self.from_quantity is None
@@ -253,7 +254,9 @@ class ItemTransaction(models.Model):
             ):
                 raise IntegrityError('Convert item transaction requires all "from" information and all "to" information.')
             else:
-                pass
+                # to_location may be empty.
+                # Make sure it matches from_location.
+                self.to_location = self.from_location
         else:
             raise IntegrityError('Unknown item transaction.')
         # One of the four transaction types was detected, and the transaction
@@ -264,13 +267,31 @@ class ItemTransaction(models.Model):
         return self.from_location is None and self.to_location is not None
 
     def is_remove(self):
-        return self.from_location is not None and self.to_location is None
+        return (
+            self.from_location is not None
+            and self.to_location is None
+            and self.to_quantity is None
+            and self.to_uom is None
+        )
 
     def is_move(self):
-        return self.from_location != self.to_location
+        return (
+            self.to_location is not None
+            and self.from_location != self.to_location
+        )
 
     def is_convert(self):
-        return self.from_location == self.to_location
+        return (
+            self.from_location == self.to_location
+            or (
+                self.from_location is not None
+                and self.to_location is None
+                and self.from_quantity is not None
+                and self.from_uom is not None
+                and self.to_quantity is not None
+                and self.to_uom is not None
+            )
+        )
 
     def __unicode__(self):
         if self.is_add():
