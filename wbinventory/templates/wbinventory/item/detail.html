@@ -51,4 +51,12 @@
             {% include "wbinventory/itemsupplier/table.html" %}
         {% endwith %}
     </div>
+
+    <div id="item-prices">
+        <h2>Prices</h2>
+
+        {% with item.itemprice_set.all as itemprice_list %}
+            {% include "wbinventory/itemprice/table.html" %}
+        {% endwith %}
+    </div>
 {% endblock %}

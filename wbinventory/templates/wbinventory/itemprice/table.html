@@ -1,0 +1,18 @@
+{% if itemprice_list %}
+    <table>
+        <thead>
+        <tr>
+            <th>Third Party</th>
+            <th>Amount</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for itemprice in itemprice_list %}
+            {% include "wbinventory/itemprice/table_row.html" %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No item suppliers.</p>
+{% endif %}

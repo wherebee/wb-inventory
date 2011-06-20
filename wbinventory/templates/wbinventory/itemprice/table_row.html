@@ -1,0 +1,9 @@
+<tr>
+    <td>{{ itemprice.third_party }}</td>
+    <td>{{ itemprice.quantity }} {{ itemprice.uom }}</td>
+    {% if itemprice.currency.symbol %}
+        <td>{{ itemprice.currency.symbol }}{{ itemprice.price }}</td>
+    {% else %}
+        <td>{{ itemprice.currency.code }} {{ itemprice.price }}</td>
+    {% endif %}
+</tr>
