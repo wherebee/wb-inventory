@@ -40,6 +40,7 @@ nav #sitesearch form input[type="text"] {
 
 div#content {
     margin: 1em .5em;
+    position: relative;
 }
 
 div#content thead tr {
@@ -51,28 +52,52 @@ div#content thead th, div#content tbody td {
     padding-right: .5em;
 }
 
-#item-number h1 {
-    display: inline;
-    margin-top: 0;
-}
-
-#item-name span {
-    font-size: x-large;
-}
-
-.detail {
+.detail-list {
     margin-top: .5em;
+    position: relative;
 }
 
-.detail label {
-    width: 12em;
+.detail-list li {
+    list-style: none;
+    margin-left: -2.5em;
+}
+
+.detail-list label {
+    /*display: block;*/
+    margin-left: 0;
+    width: 10em;
     float: left;
     color: gray;
     font-style: italic;
 }
 
-.detail .null.value {
+.detail-list .value {
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 10em;
+}
+
+.detail-list .null.value {
     color: #d3d3d3;
+    font-weight: normal;
+}
+
+div#content > div {
+    margin-bottom: 1em;
+}
+
+div#content > div h2 {
+    margin-top: 0;
+}
+
+div#item-detail {
+    width: 60%;
+}
+
+div#item-locations {
+    position: absolute;
+    top: 0;
+    left: 60%;
 }
 
 body > footer {

@@ -6,42 +6,47 @@
 {% endblock %}
 
 {% block content %}
+    <h2>Item Detail</h2>
+
+    <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[Edit]</a></em>
+
     <div id="item-detail">
-        <div id="item-number" class="detail">
-            <label>Number</label>
-            <h1 class="value">{{ item.number }}</h1>
-            <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
-        </div>
+        <ul class="detail-list">
+            <li id="item-number">
+                <label>Number</label>
+                <div class="value">{{ item.number }}</div>
+            </li>
 
-        <div id="item-name" class="detail">
-            <label>Name</label>
-            <span class="value {% if item.name == None %}null{% endif %}">{{ item.name }}</span>
-        </div>
+            <li id="item-name">
+                <label>Name</label>
+                <div class="value {% if item.name == None %}null{% endif %}">{{ item.name }}</div>
+            </li>
 
-        <div id="item-description" class="detail">
-            <label>Description</label>
-            <span class="value {% if item.description == None %}null{% endif %}">{{ item.description }}</span>
-        </div>
+            <li id="item-description">
+                <label>Description</label>
+                <div class="value {% if item.description == None %}null{% endif %}">{{ item.description }}</div>
+            </li>
 
-        <div id="item-default-uom" class="detail">
-            <label>Default unit of measure</label>
-            <span class="value {% if item.default_uom == None %}null{% endif %}">{{ item.default_uom }}</span>
-        </div>
+            <li id="item-default-uom">
+                <label>Default unit of measure</label>
+                <div class="value {% if item.default_uom == None %}null{% endif %}">{{ item.default_uom }}</div>
+            </li>
 
-        <div id="item-default-location" class="detail">
-            <label>Default location</label>
-            <span class="value {% if item.default_location == None %}null{% endif %}">{{ item.default_location }}</span>
-        </div>
+            <li id="item-default-location">
+                <label>Default location</label>
+                <div class="value {% if item.default_location == None %}null{% endif %}">{{ item.default_location }}</div>
+            </li>
 
-        <div id="item-reorder-quantity" class="detail">
-            <label>Reorder quantity</label>
-            <span class="value {% if item.reorder_quantity == None %}null{% endif %}">{{ item.reorder_quantity }}</span>
-        </div>
+            <li id="item-reorder-quantity">
+                <label>Reorder quantity</label>
+                <div class="value {% if item.reorder_quantity == None %}null{% endif %}">{{ item.reorder_quantity }}</div>
+            </li>
 
-        <div id="item-target-quantity" class="detail">
-            <label>Target quantity</label>
-            <span class="value {% if item.target_quantity == None %}null{% endif %}">{{ item.target_quantity }}</span>
-        </div>
+            <li id="item-target-quantity">
+                <label>Target quantity</label>
+                <div class="value {% if item.target_quantity == None %}null{% endif %}">{{ item.target_quantity }}</div>
+            </li>
+        </ul>
     </div>
 
     <div id="item-suppliers">
