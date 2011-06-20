@@ -64,4 +64,12 @@
             {% include "wbinventory/itemprice/table.html" %}
         {% endwith %}
     </div>
+
+    <div id="item-locations">
+        <h2>Quantity on hand</h2>
+
+        {% with item.itemlocation_set.all as itemlocation_list %}
+            {% include "wbinventory/itemlocation/table.html" %}
+        {% endwith %}
+    </div>
 {% endblock %}

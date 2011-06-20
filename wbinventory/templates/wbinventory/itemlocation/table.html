@@ -1,0 +1,17 @@
+{% if itemlocation_list %}
+    <table>
+        <thead>
+        <tr>
+            <th>Location</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for itemsupplier in itemsupplier_list %}
+            {% include "wbinventory/itemlocation/table_row.html" %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No items at any location.</p>
+{% endif %}
