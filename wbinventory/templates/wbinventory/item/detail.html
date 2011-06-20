@@ -6,26 +6,36 @@
 {% endblock %}
 
 {% block content %}
-    <div id="item-number" class="editable-text">
-        <span>{{ item.number }}</span>
-        <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
+    <div id="item-detail">
+        <div id="item-number" class="editable-text">
+            <h1>{{ item.number }}</h1>
+            <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
+        </div>
+
+        <div id="item-name" class="editable-text">
+            {% if item.name %}
+                <span>{{ item.name }}</span>
+                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
+            {% else %}
+                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[add name]</a></em>
+            {% endif %}
+        </div>
+
+        <div id="item-description" class="editable-text">
+            {% if item.description %}
+                <span>{{ item.description }}</span>
+                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
+            {% else %}
+                <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[add description]</a></em>
+            {% endif %}
+        </div>
     </div>
 
-    <div id="item-name" class="editable-text">
-        {% if item.name %}
-            <span>{{ item.name }}</span>
-            <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
-        {% else %}
-            <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[add name]</a></em>
-        {% endif %}
-    </div>
+    <div id="item-suppliers">
+        <h2>Suppliers</h2>
 
-    <div id="item-description" class="editable-text">
-        {% if item.description %}
-            <span>{{ item.description }}</span>
-            <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[edit]</a></em>
-        {% else %}
-            <em class="edit-text"><a href="{% url 'wbinventory_item_update' pk=item.pk %}">[add description]</a></em>
-        {% endif %}
+        {% with item.itemsupplier_set.all as itemsupplier_list %}
+            {% include "wbinventory/itemsupplier/table.html" %}
+        {% endwith %}
     </div>
 {% endblock %}

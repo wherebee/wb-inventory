@@ -1,0 +1,17 @@
+{% if itemsupplier_list %}
+    <table>
+        <thead>
+        <tr>
+            <th>Third Party</th>
+            <th>Item Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for itemsupplier in itemsupplier_list %}
+            {% include "wbinventory/itemsupplier/table_row.html" %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No item suppliers.</p>
+{% endif %}
