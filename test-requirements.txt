@@ -1,4 +1,6 @@
+setuptools-git >= 0.4.2
+
 Django >= 1.4.1, < 1.5
-Unipath == 0.2.1
-South == 0.7.6
 -e git+https://github.com/pydanny/django-uni-form@159f539e2fb98752b7964d75e955fc62881c28fb#egg=django-uni-form
+South == 0.7.6
+Unipath == 0.2.1
