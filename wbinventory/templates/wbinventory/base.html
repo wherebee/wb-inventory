@@ -1,11 +1,12 @@
 {% extends "site_base.html" %}
+{% load url from future %}
 
 {% block menu %}
 {% endblock %}
 
 {% block header %}
 <div id="sitesearch">
-    <form method="get" action="{% url wbinventory_sitesearch %}">
+    <form method="get" action="{% url 'wbinventory_sitesearch' %}">
         <label for="search_q">Search:</label>
         {% with request.GET.q as q %}
             <input type="text" name="q" id="search_q" {% if q %}value="{{ q }}"{% endif %}>

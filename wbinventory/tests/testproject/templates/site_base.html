@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{# Override site_base.html in your own project's templates. #}
+{% load static %}
+{% load url from future %}
+{% get_static_prefix as STATIC_PREFIX %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {# libraries #}
+    <script type="text/javascript" src="http{% if request.is_secure %}s{% endif %}://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    {# uni_form #}
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}uni_form/uni-form.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}uni_form/default.uni-form.css" type="text/css" />
+    <script src="{{ STATIC_PREFIX }}uni_form/uni-form.jquery.js" type="text/javascript"></script>
+    {# wbinventory-specific #}
+    <link rel="shortcut icon" href="{{ STATIC_PREFIX }}wbinventory/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}css/wbinventory.css" />
+    {% block extra_head %}{% endblock %}
+</head>
+<body id="{% block body_id %}{# used for css #}{% endblock %}" class="{% block body_class %}{# used for css #}{% endblock %}">
+{% block body %}
+    {# entire body of the page, replaceable in its entirety if needed #}
+    <nav>
+        <h1>WhereBee Inventory</h1>
+        <div id="sitemenu">
+            {% block menu %}
+                {# <ul> with <li> elements representing site-wide menu #}
+            {% endblock %}
+        </div>
+        <div id="auth">
+            {% if user.is_anonymous %}
+                <a href="{% url 'accounts_login' %}">Login</a>
+            {% else %}
+                Logged in as {{ user.username }}.
+                <a href="{% url 'accounts_logout' %}">Logout</a>.
+            {% endif %}
+        </div>
+        {% block header %}
+            {# text in the header that might change on page-by-page basis #}
+        {% endblock %}
+    </nav>
+    <div id="content">
+        <h1>{% block content_title %}{# title of the page content #}{% endblock %}</h1>
+
+        <div id="pagemenu">
+            {% block page_menu %}
+                {# <ul> with <li> elements representing page-specific menu #}
+            {% endblock %}
+        </div>
+
+        {% block content %}
+            {# page content #}
+        {% endblock %}
+    </div>
+    <footer>
+        {% block footer %}
+            {# text in the footer that might change on a page-by-page basis #}
+        {% endblock %}
+        <div id="poweredby">
+            Powered by <a href="https://github.com/wherebee/">WhereBee Inventory</a>.
+        </div>
+    </footer>
+{% endblock %}
+</body>
+</html>
